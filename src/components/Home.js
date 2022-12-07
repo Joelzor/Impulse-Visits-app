@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./Home.css";
 
 const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
 const apiKeyGeocode = process.env.REACT_APP_API_KEY_GEOCODE;
@@ -24,14 +25,11 @@ const Home = () => {
 
   useEffect(() => {
     if (userLatitude && userLongitude) {
-      console.log(userLatitude);
-      console.log(userLongitude);
       fetch(
         `https://api.geoapify.com/v1/geocode/reverse?lat=${userLatitude}&lon=${userLongitude}&apiKey=${apiKeyGeocode}`
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setLocation(data.features[0].properties.city);
         })
         .catch((err) => {
@@ -78,6 +76,11 @@ const Home = () => {
   return (
     <>
       <h1>Impulse Visits</h1>
+      <img
+        src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+        alt="city"
+        className="banner"
+      />
       <p>Your location: {location ? location : "Unable to locate"}</p>
     </>
   );
