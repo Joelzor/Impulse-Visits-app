@@ -4,8 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Activities from "./components/Activities";
 
-const apiKey = "AIzaSyAFVPra5dqDvAbLHOh0wEw0u5bLCTocZro";
-
 function App() {
   return (
     <main>
