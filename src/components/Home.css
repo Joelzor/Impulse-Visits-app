@@ -1,4 +1,36 @@
 .banner {
+  position: relative;
+}
+
+.banner-img {
   height: 400px;
   width: auto;
+}
+
+.home-title {
+  position: absolute;
+  top: 0;
+  left: 80px;
+}
+
+.location-container {
+  margin-top: 30px;
+  margin-left: 150px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.location-text {
+  font-weight: 600;
+}
+
+.search-form {
+  margin-top: 30px;
+  margin-left: 150px;
+}
+
+.searchbar {
+  padding: 8px 16px;
+  border-radius: 20px;
 }
