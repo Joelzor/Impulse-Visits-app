@@ -1,8 +1,18 @@
+.activities {
+  width: 980px;
+}
+
 .activities-header {
   display: flex;
   gap: 30px;
-  align-items: center;
+  justify-content: space-between;
+  /* align-items: center; */
   margin-bottom: 50px;
+}
+
+.activities-title {
+  font-family: "La Belle Aurore", cursive;
+  font-size: 32px;
 }
 
 .activities-container {

@@ -27,15 +27,11 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
-}
-
-.location-container p {
-  font-size: 18px;
+  font-size: 26px;
 }
 
 .location-text {
   font-weight: 600;
-  font-size: 24px;
   margin-left: 10px;
 }
 
@@ -57,6 +53,8 @@
   border: none;
   padding: 5px 15px;
   transition: all 1s;
+  height: 36px;
+  font-size: 16px;
 }
 
 .confirm-btn {
@@ -71,7 +69,6 @@
 .search-btn {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  height: 36px;
   background-color: #aed9e0;
 }
 

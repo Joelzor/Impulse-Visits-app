@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { MapContainer, Marker, Popup } from "react-leaflet";
 import Activity from "./Activity";
 import CityMap from "./CityMap";
@@ -72,31 +72,38 @@ const Activities = ({ latitude, longitude }) => {
 
   return (
     <>
-      <div className="activities-header">
-        <h1>The possibilities are endless...</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="search"
-            className="searchbar"
-            placeholder="Search for another city..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-      <section className="activities-container">
-        <ul className="activities-list">
-          {activities &&
-            activities.map((activity, index) => {
-              return <Activity key={index} {...activity} />;
-            })}
-        </ul>
-        {cityCoords.length > 0 && (
-          <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
-            <CityMap center={cityCoords} zoom={12} />
-          </MapContainer>
-        )}
+      <section className="activities">
+        <div className="activities-header">
+          <h1 className="activities-title">Where to visit next?</h1>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="search"
+              className="searchbar"
+              placeholder="Search for another city..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button type="submit" className="btn search-btn">
+              Search
+            </button>
+          </form>
+          <Link to={"/"}>
+            <button className="btn confirm-btn">Home</button>
+          </Link>
+        </div>
+        <section className="activities-container">
+          <ul className="activities-list">
+            {activities &&
+              activities.map((activity, index) => {
+                return <Activity key={index} {...activity} />;
+              })}
+          </ul>
+          {cityCoords.length > 0 && (
+            <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
+              <CityMap center={cityCoords} zoom={12} />
+            </MapContainer>
+          )}
+        </section>
       </section>
     </>
   );
