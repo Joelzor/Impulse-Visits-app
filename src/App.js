@@ -39,7 +39,12 @@ function App() {
           path="/"
           element={<Home latitude={userLatitude} longitude={userLongitude} />}
         />
-        <Route path="/activities" element={<Activities />} />
+        <Route
+          path="/activities"
+          element={
+            <Activities latitude={userLatitude} longitude={userLongitude} />
+          }
+        />
       </Routes>
     </main>
   );

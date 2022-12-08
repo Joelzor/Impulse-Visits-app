@@ -5,26 +5,10 @@ import "./Home.css";
 const apiKeyGeocode = process.env.REACT_APP_API_KEY_GEOCODE;
 
 const Home = ({ latitude, longitude }) => {
-  // const [userLatitude, setUserLatitude] = useState(null);
-  // const [userLongitude, setUserLongitude] = useState(null);
   const [location, setLocation] = useState("");
   const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const options = {
-  //     enableHighAccuracy: true,
-  //     timeout: 5000,
-  //     maximumAge: 0,
-  //   };
-
-  //   navigator.geolocation.getCurrentPosition(
-  //     successCallback,
-  //     errorCallback,
-  //     options
-  //   );
-  // }, []);
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -40,16 +24,6 @@ const Home = ({ latitude, longitude }) => {
         });
     }
   }, [latitude, longitude]);
-
-  // const successCallback = (position) => {
-  //   const { latitude, longitude } = position.coords;
-  //   setUserLatitude(latitude);
-  //   setUserLongitude(longitude);
-  // };
-
-  // const errorCallback = (error) => {
-  //   console.log(error);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
