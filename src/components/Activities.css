@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 100px;
-  max-height: 450px;
+  height: 420px;
 }
 
 .activities-list {

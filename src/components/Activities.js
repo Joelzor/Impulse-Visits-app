@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { MapContainer, Marker, Popup } from "react-leaflet";
 import Activity from "./Activity";
 import CityMap from "./CityMap";
@@ -14,15 +14,19 @@ const Activities = ({ latitude, longitude }) => {
   const [query, setQuery] = useState("");
   const [activities, setActivities] = useState([]);
   const [cityCoords, setCityCoords] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // const location = useLocation();
+  useEffect(() => {
+    const query = searchParams.get("query");
+    if (query) {
+      setQuery(query);
+      apiGet("geoname", "name=" + query.toLowerCase());
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (latitude && longitude && !query) {
-      apiGet(
-        "radius",
-        `radius=1000&limit=${pageLength}&offset=${offset}&lon=${longitude}&lat=${latitude}&rate=2&format=${count}`
-      );
+      setCityCoords([latitude, longitude]);
     }
   }, [latitude, longitude, query]);
 
