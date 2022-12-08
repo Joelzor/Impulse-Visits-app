@@ -34,35 +34,39 @@ const Home = ({ latitude, longitude }) => {
 
   return (
     <>
-      <div className="banner">
-        <h1 className="home-title">Impulse Visits</h1>
-        <img
-          src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          alt="city"
-          className="banner-img"
-        />
-      </div>
-      <div className="location-container">
-        <p>
-          Your location:{" "}
-          <span className="location-text">
-            {location ? location : "Unable to locate"}
-          </span>
-        </p>
-        <Link to={"/activities"} state={{ location }}>
-          <button>Confirm</button>
-        </Link>
-      </div>
-      <form className="search-form" onSubmit={handleSubmit}>
-        <input
-          type="search"
-          className="searchbar"
-          placeholder="Search for another city..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
+      <section className="home">
+        <div className="banner">
+          <h1 className="home-title">Impulse Visits</h1>
+          <img
+            src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="city"
+            className="banner-img"
+          />
+        </div>
+        <div className="location-container">
+          <p>
+            Your location:{" "}
+            <span className="location-text">
+              {location ? location : "Unable to locate"}
+            </span>
+          </p>
+          <Link to={"/activities"} state={{ location }}>
+            <button className="btn confirm-btn">Confirm</button>
+          </Link>
+        </div>
+        <form className="search-form" onSubmit={handleSubmit}>
+          <input
+            type="search"
+            className="searchbar"
+            placeholder="Search for another city..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit" className="btn search-btn">
+            Search
+          </button>
+        </form>
+      </section>
     </>
   );
 };
