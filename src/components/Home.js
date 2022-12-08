@@ -4,32 +4,32 @@ import "./Home.css";
 
 const apiKeyGeocode = process.env.REACT_APP_API_KEY_GEOCODE;
 
-const Home = () => {
-  const [userLatitude, setUserLatitude] = useState(null);
-  const [userLongitude, setUserLongitude] = useState(null);
+const Home = ({ latitude, longitude }) => {
+  // const [userLatitude, setUserLatitude] = useState(null);
+  // const [userLongitude, setUserLongitude] = useState(null);
   const [location, setLocation] = useState("");
   const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    };
+  // useEffect(() => {
+  //   const options = {
+  //     enableHighAccuracy: true,
+  //     timeout: 5000,
+  //     maximumAge: 0,
+  //   };
 
-    navigator.geolocation.getCurrentPosition(
-      successCallback,
-      errorCallback,
-      options
-    );
-  }, []);
+  //   navigator.geolocation.getCurrentPosition(
+  //     successCallback,
+  //     errorCallback,
+  //     options
+  //   );
+  // }, []);
 
   useEffect(() => {
-    if (userLatitude && userLongitude) {
+    if (latitude && longitude) {
       fetch(
-        `https://api.geoapify.com/v1/geocode/reverse?lat=${userLatitude}&lon=${userLongitude}&apiKey=${apiKeyGeocode}`
+        `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${apiKeyGeocode}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -39,17 +39,17 @@ const Home = () => {
           console.log(err);
         });
     }
-  }, [userLatitude, userLongitude]);
+  }, [latitude, longitude]);
 
-  const successCallback = (position) => {
-    const { latitude, longitude } = position.coords;
-    setUserLatitude(latitude);
-    setUserLongitude(longitude);
-  };
+  // const successCallback = (position) => {
+  //   const { latitude, longitude } = position.coords;
+  //   setUserLatitude(latitude);
+  //   setUserLongitude(longitude);
+  // };
 
-  const errorCallback = (error) => {
-    console.log(error);
-  };
+  // const errorCallback = (error) => {
+  //   console.log(error);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,7 +75,7 @@ const Home = () => {
             {location ? location : "Unable to locate"}
           </span>
         </p>
-        <Link to={"/activities"}>
+        <Link to={"/activities"} state={{ location }}>
           <button>Confirm</button>
         </Link>
       </div>

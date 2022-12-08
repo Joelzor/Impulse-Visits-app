@@ -1,6 +1,10 @@
+import { useLocation } from "react-router-dom";
+
 const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
 
 const Activities = () => {
+  const location = useLocation();
+
   // const pageLength = 5; // number of objects per page
   // let offset = 0; // offset from first object in the list
   // let count; // total objects count
@@ -26,6 +30,7 @@ const Activities = () => {
   //       console.log("Fetch Error :-S", err);
   //     });
   // }
+
   return <>Activities Component</>;
 };
 
