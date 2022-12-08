@@ -6,10 +6,12 @@ const Activity = ({ name, kinds }) => {
   });
 
   return (
-    <li>
-      <h3>{name}</h3>
+    <li className="activity-item">
+      <h3>{`${name.substring(0, 50)}...`}</h3>
       <p className="tags">
-        {tagsFixed[0]} - {tagsFixed[1]} - {tagsFixed[2]}
+        <span className="tag">{tagsFixed[0]}</span> -{" "}
+        <span className="tag">{tagsFixed[1]} </span> -{" "}
+        <span className="tag">{tagsFixed[2]}</span>
       </p>
     </li>
   );

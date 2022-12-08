@@ -84,12 +84,14 @@ const Activities = ({ latitude, longitude }) => {
           <button type="submit">Search</button>
         </form>
       </div>
-      <ul className="activities-list">
-        {activities &&
-          activities.map((activity, index) => {
-            return <Activity key={index} {...activity} />;
-          })}
-      </ul>
+      <section className="activities-container">
+        <ul className="activities-list">
+          {activities &&
+            activities.map((activity, index) => {
+              return <Activity key={index} {...activity} />;
+            })}
+        </ul>
+      </section>
     </>
   );
 };
