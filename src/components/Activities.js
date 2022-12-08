@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 // import { useLocation } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import Activity from "./Activity";
 import "./Activities.css";
 
@@ -13,6 +14,9 @@ const Activities = ({ latitude, longitude }) => {
   const [activities, setActivities] = useState([]);
   const [cityLatitude, setCityLatitude] = useState(null);
   const [cityLongitude, setCityLongitude] = useState(null);
+  const [cityCoords, setCityCoords] = useState([]);
+
+  console.log(cityCoords);
 
   // const location = useLocation();
 
@@ -32,8 +36,6 @@ const Activities = ({ latitude, longitude }) => {
         `radius=1000&limit=${pageLength}&offset=${offset}&lon=${cityLongitude}&lat=${cityLatitude}&rate=2&format=${count}`
       );
     }
-
-    console.log(activities);
   }, [cityLongitude, cityLatitude]);
 
   // function given to us by the Open Trip Map API (slightly adjusted)
@@ -52,8 +54,9 @@ const Activities = ({ latitude, longitude }) => {
       .then((data) => {
         // surely a better way to do this
         if (Array.isArray(data) === false) {
-          setCityLatitude(data.lat);
-          setCityLongitude(data.lon);
+          // setCityLatitude(data.lat);
+          // setCityLongitude(data.lon);
+          setCityCoords([data.lat, data.lon]);
         } else {
           setActivities(data);
         }
@@ -91,8 +94,26 @@ const Activities = ({ latitude, longitude }) => {
               return <Activity key={index} {...activity} />;
             })}
         </ul>
+        {cityCoords.length > 0 && (
+          <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
+            <MyMap center={cityCoords} zoom={12} />
+          </MapContainer>
+        )}
       </section>
     </>
+  );
+};
+
+const MyMap = (props) => {
+  const map = useMap();
+  map.getCenter();
+  map.setView(props.center, props.zoom);
+
+  return (
+    <TileLayer
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    />
   );
 };
 
