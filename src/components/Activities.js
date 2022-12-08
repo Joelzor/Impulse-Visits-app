@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import Activity from "./Activity";
 import "./Activities.css";
 
 const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
@@ -16,7 +17,6 @@ const Activities = ({ latitude, longitude }) => {
   // const location = useLocation();
 
   useEffect(() => {
-    // AND query isn't null? So we don't search by location but rather with the user query
     if (latitude && longitude && !query) {
       apiGet(
         "radius",
@@ -32,6 +32,8 @@ const Activities = ({ latitude, longitude }) => {
         `radius=1000&limit=${pageLength}&offset=${offset}&lon=${cityLongitude}&lat=${cityLatitude}&rate=2&format=${count}`
       );
     }
+
+    console.log(activities);
   }, [cityLongitude, cityLatitude]);
 
   // function given to us by the Open Trip Map API (slightly adjusted)
@@ -82,15 +84,10 @@ const Activities = ({ latitude, longitude }) => {
           <button type="submit">Search</button>
         </form>
       </div>
-      <ul>
+      <ul className="activities-list">
         {activities &&
           activities.map((activity, index) => {
-            const { name } = activity;
-            return (
-              <li key={index}>
-                <p>{name}</p>
-              </li>
-            );
+            return <Activity key={index} {...activity} />;
           })}
       </ul>
     </>

@@ -1,0 +1,13 @@
+.activities-header {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.activities-list {
+  list-style: none;
+}
+
+.tags {
+  font-style: italic;
+}
