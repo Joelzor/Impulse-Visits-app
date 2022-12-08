@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 // import { useLocation } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup } from "react-leaflet";
 import Activity from "./Activity";
+import CityMap from "./CityMap";
 import "./Activities.css";
 
 const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
@@ -12,11 +13,7 @@ let count; // total objects count
 const Activities = ({ latitude, longitude }) => {
   const [query, setQuery] = useState("");
   const [activities, setActivities] = useState([]);
-  const [cityLatitude, setCityLatitude] = useState(null);
-  const [cityLongitude, setCityLongitude] = useState(null);
   const [cityCoords, setCityCoords] = useState([]);
-
-  console.log(cityCoords);
 
   // const location = useLocation();
 
@@ -30,13 +27,13 @@ const Activities = ({ latitude, longitude }) => {
   }, [latitude, longitude, query]);
 
   useEffect(() => {
-    if (cityLongitude && cityLatitude) {
+    if (cityCoords.length > 0) {
       apiGet(
         "radius",
-        `radius=1000&limit=${pageLength}&offset=${offset}&lon=${cityLongitude}&lat=${cityLatitude}&rate=2&format=${count}`
+        `radius=1000&limit=${pageLength}&offset=${offset}&lon=${cityCoords[1]}&lat=${cityCoords[0]}&rate=2&format=${count}`
       );
     }
-  }, [cityLongitude, cityLatitude]);
+  }, [cityCoords]);
 
   // function given to us by the Open Trip Map API (slightly adjusted)
   function apiGet(method, query) {
@@ -52,10 +49,7 @@ const Activities = ({ latitude, longitude }) => {
     fetch(otmAPI)
       .then((response) => response.json())
       .then((data) => {
-        // surely a better way to do this
         if (Array.isArray(data) === false) {
-          // setCityLatitude(data.lat);
-          // setCityLongitude(data.lon);
           setCityCoords([data.lat, data.lon]);
         } else {
           setActivities(data);
@@ -96,24 +90,11 @@ const Activities = ({ latitude, longitude }) => {
         </ul>
         {cityCoords.length > 0 && (
           <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
-            <MyMap center={cityCoords} zoom={12} />
+            <CityMap center={cityCoords} zoom={12} />
           </MapContainer>
         )}
       </section>
     </>
-  );
-};
-
-const MyMap = (props) => {
-  const map = useMap();
-  map.getCenter();
-  map.setView(props.center, props.zoom);
-
-  return (
-    <TileLayer
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    />
   );
 };
 
