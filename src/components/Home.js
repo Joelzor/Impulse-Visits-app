@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./Home.css";
 
 const apiKeyGeocode = process.env.REACT_APP_API_KEY_GEOCODE;
@@ -7,6 +8,9 @@ const Home = () => {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
   const [location, setLocation] = useState("");
+  const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const options = {
@@ -47,6 +51,13 @@ const Home = () => {
     console.log(error);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams({ query });
+    navigate({ pathname: "/activities", search: params.toString() });
+  };
+
   return (
     <>
       <div className="banner">
@@ -64,14 +75,19 @@ const Home = () => {
             {location ? location : "Unable to locate"}
           </span>
         </p>
-        <button>Confirm</button>
+        <Link to={"/activities"}>
+          <button>Confirm</button>
+        </Link>
       </div>
-      <form className="search-form">
+      <form className="search-form" onSubmit={handleSubmit}>
         <input
           type="search"
           className="searchbar"
           placeholder="Search for another city..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
+        <button type="submit">Search</button>
       </form>
     </>
   );
