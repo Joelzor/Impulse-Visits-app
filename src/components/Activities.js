@@ -98,6 +98,7 @@ const Activities = ({ latitude, longitude }) => {
                 return <Activity key={index} {...activity} />;
               })}
           </ul>
+
           {cityCoords.length > 0 && (
             <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
               <CityMap center={cityCoords} zoom={12} />

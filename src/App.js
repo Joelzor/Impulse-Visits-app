@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Activities from "./components/Activities";
+import Plans from "./components/Plans";
 
 function App() {
   const [userLatitude, setUserLatitude] = useState(null);
@@ -26,6 +27,7 @@ function App() {
     const { latitude, longitude } = position.coords;
     setUserLatitude(latitude);
     setUserLongitude(longitude);
+    console.log(latitude, longitude);
   };
 
   const errorCallback = (error) => {
@@ -45,6 +47,7 @@ function App() {
             <Activities latitude={userLatitude} longitude={userLongitude} />
           }
         />
+        <Route path="/plans" element={<Plans />} />
       </Routes>
     </main>
   );
