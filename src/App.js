@@ -27,7 +27,6 @@ function App() {
     const { latitude, longitude } = position.coords;
     setUserLatitude(latitude);
     setUserLongitude(longitude);
-    console.log(latitude, longitude);
   };
 
   const errorCallback = (error) => {
