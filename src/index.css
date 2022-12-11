@@ -17,7 +17,7 @@ code {
 @tailwind utilities;
 
 .btn {
-  @apply outline-none cursor-pointer py-1.5 px-4 transition-all h-9 text-base;
+  @apply outline-none cursor-pointer py-1.5 px-4 transition-all duration-1000 h-9 text-base;
 }
 
 .confirm-btn {
@@ -26,4 +26,12 @@ code {
 
 .search-btn {
   @apply rounded-tr-2xl rounded-br-2xl bg-[#aed9e0] hover:bg-[#d3eaee];
+}
+
+.searchbar {
+  @apply py-1.5 px-4 rounded-tl-2xl rounded-bl-2xl border border-black;
+}
+
+.tag {
+  @apply rounded-2xl py-0.5 px-2 bg-[#aed9e0];
 }

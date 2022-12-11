@@ -60,7 +60,7 @@ const Home = ({ latitude, longitude }) => {
         <form className="mt-7 ml-36 mb-5" onSubmit={handleSubmit}>
           <input
             type="search"
-            className="py-1.5 px-4 rounded-tl-2xl rounded-bl-2xl border border-black"
+            className="searchbar"
             placeholder="Search for another city..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
