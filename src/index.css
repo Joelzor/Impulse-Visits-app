@@ -15,3 +15,15 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  @apply outline-none cursor-pointer py-1.5 px-4 transition-all h-9 text-base;
+}
+
+.confirm-btn {
+  @apply rounded-2xl bg-[#43c59e] hover:bg-[#92ddc7];
+}
+
+.search-btn {
+  @apply rounded-tr-2xl rounded-br-2xl bg-[#aed9e0] hover:bg-[#d3eaee];
+}

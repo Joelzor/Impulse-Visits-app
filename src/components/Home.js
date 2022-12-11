@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./Home.css";
+// import "./Home.css";
 
 const apiKeyGeocode = process.env.REACT_APP_API_KEY_GEOCODE;
 
@@ -34,19 +34,22 @@ const Home = ({ latitude, longitude }) => {
 
   return (
     <>
-      <section className="home">
-        <div className="banner">
-          <h1 className="home-title">Impulse Visits</h1>
+      <section className="rounded-xl overflow-hidden bg-white shadow-lg">
+        <div className="relative">
+          <h1 className="absolute top-5 left-20 font-['La_Belle_Aurore'] text-2xl">
+            Impulse Visits
+          </h1>
           <img
             src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             alt="city"
-            className="banner-img"
+            className="h-96 w-auto"
           />
         </div>
-        <div className="location-container">
+        {/* location container */}
+        <div className="mt-7 flex justify-center items-center gap-12 text-2xl">
           <p>
             Your location:{" "}
-            <span className="location-text">
+            <span className="font-semibold ml-2.5">
               {location ? location : "Unable to locate"}
             </span>
           </p>
@@ -54,10 +57,10 @@ const Home = ({ latitude, longitude }) => {
             <button className="btn confirm-btn">Confirm</button>
           </Link>
         </div>
-        <form className="search-form" onSubmit={handleSubmit}>
+        <form className="mt-7 ml-36 mb-5" onSubmit={handleSubmit}>
           <input
             type="search"
-            className="searchbar"
+            className="py-1.5 px-4 rounded-tl-2xl rounded-bl-2xl border border-black"
             placeholder="Search for another city..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
