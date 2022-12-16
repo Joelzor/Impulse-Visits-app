@@ -10,7 +10,7 @@ const pageLength = 5; // number of objects per page
 let offset = 0; // offset from first object in the list
 let count; // total objects count
 
-const Activities = ({ latitude, longitude }) => {
+const Activities = ({ latitude, longitude, addToPlans }) => {
   const [query, setQuery] = useState("");
   const [activities, setActivities] = useState([]);
   const [cityCoords, setCityCoords] = useState([]);
@@ -100,7 +100,13 @@ const Activities = ({ latitude, longitude }) => {
           <ul className="list-none m-0 p-0">
             {activities &&
               activities.map((activity, index) => {
-                return <Activity key={index} {...activity} />;
+                return (
+                  <Activity
+                    key={index}
+                    activity={activity}
+                    addToPlans={addToPlans}
+                  />
+                );
               })}
           </ul>
 

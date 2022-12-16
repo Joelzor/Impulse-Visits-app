@@ -8,6 +8,7 @@ import Plans from "./components/Plans";
 function App() {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
+  const [plans, setPlans] = useState([]);
 
   useEffect(() => {
     const options = {
@@ -33,6 +34,10 @@ function App() {
     console.log(error);
   };
 
+  const addToPlans = (plan) => {
+    setPlans([...plans, plan]);
+  };
+
   return (
     <main>
       <Routes>
@@ -43,10 +48,14 @@ function App() {
         <Route
           path="/activities"
           element={
-            <Activities latitude={userLatitude} longitude={userLongitude} />
+            <Activities
+              latitude={userLatitude}
+              longitude={userLongitude}
+              addToPlans={addToPlans}
+            />
           }
         />
-        <Route path="/plans" element={<Plans />} />
+        <Route path="/plans" element={<Plans plans={plans} />} />
       </Routes>
     </main>
   );

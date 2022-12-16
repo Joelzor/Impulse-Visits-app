@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const Plans = () => {
-  const [plans, setPlans] = useState([]);
+const Plans = ({ plans }) => {
+  console.log(plans);
 
   return <>Plans</>;
 };

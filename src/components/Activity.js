@@ -1,6 +1,7 @@
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-const Activity = ({ name, kinds }) => {
+const Activity = ({ activity, addToPlans }) => {
+  const { kinds, name } = activity;
   // Splitting string into an array then replacing underscores with space
   const tags = kinds.split(",");
   const tagsFixed = tags.map((tag) => {
@@ -19,7 +20,12 @@ const Activity = ({ name, kinds }) => {
           </p>
         </div>
       </li>
-      <button className="self-center rounded-full hover:bg-[#FCB0B0]">
+      <button
+        className="self-center rounded-full hover:bg-[#FCB0B0]"
+        onClick={() => {
+          addToPlans(activity);
+        }}
+      >
         <AiOutlinePlusCircle className="h-6 w-auto text-[#F96262] hover:text-black" />
       </button>
     </div>
