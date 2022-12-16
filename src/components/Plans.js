@@ -16,7 +16,12 @@ const Plans = ({ plans }) => {
 
   return (
     <section className="w-[980px]">
-      <Header query={query} setQuery={setQuery} handleSubmit={handleSubmit} />
+      <Header
+        query={query}
+        setQuery={setQuery}
+        handleSubmit={handleSubmit}
+        title="Your plans"
+      />
       <section className="section-container"></section>
     </section>
   );

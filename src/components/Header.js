@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 
-const Header = ({ handleSubmit, query, setQuery }) => {
+const Header = ({ handleSubmit, query, setQuery, title }) => {
   return (
     <div className="flex justify-between gap-8 mb-12 items-center">
-      <h1 className="text-3xl pt-4 font-['La_Belle_Aurore']">
-        Where to visit next?
-      </h1>
+      <h1 className="text-3xl pt-4 font-['La_Belle_Aurore']">{title}</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="search"

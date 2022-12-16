@@ -73,7 +73,12 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
   return (
     <>
       <section className="w-[980px]">
-        <Header handleSubmit={handleSubmit} query={query} setQuery={setQuery} />
+        <Header
+          handleSubmit={handleSubmit}
+          query={query}
+          setQuery={setQuery}
+          title="Where to visit next?"
+        />
         <section className="section-container">
           <ul className="list-none m-0 p-0">
             {activities &&
