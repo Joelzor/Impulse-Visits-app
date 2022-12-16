@@ -25,6 +25,7 @@ const Activity = ({ activity, addToPlans }) => {
         onClick={() => {
           addToPlans(activity);
         }}
+        title="Add to plans!"
       >
         <AiOutlinePlusCircle className="h-6 w-auto text-[#F96262] hover:text-black" />
       </button>
