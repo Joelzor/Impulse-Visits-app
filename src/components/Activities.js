@@ -89,11 +89,14 @@ const Activities = ({ latitude, longitude }) => {
               Search
             </button>
           </form>
+          <Link to={"/plans"}>
+            <button className="btn plans-btn">Plans</button>
+          </Link>
           <Link to={"/"}>
             <button className="btn confirm-btn">Home</button>
           </Link>
         </div>
-        <section className="grid grid-cols-2 gap-24 h-[420px]">
+        <section className="grid grid-cols-2 gap-20 h-[420px]">
           <ul className="list-none m-0 p-0">
             {activities &&
               activities.map((activity, index) => {

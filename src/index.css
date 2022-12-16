@@ -24,6 +24,10 @@ code {
   @apply rounded-2xl bg-[#43c59e] hover:bg-[#92ddc7];
 }
 
+.plans-btn {
+  @apply rounded-2xl bg-[#F96262] hover:bg-[#FCB0B0];
+}
+
 .search-btn {
   @apply rounded-tr-2xl rounded-br-2xl bg-[#aed9e0] hover:bg-[#d3eaee];
 }
