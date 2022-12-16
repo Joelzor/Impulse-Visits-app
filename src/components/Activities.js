@@ -73,8 +73,8 @@ const Activities = ({ latitude, longitude }) => {
   return (
     <>
       <section className="w-[980px]">
-        <div className="flex justify-between gap-8 mb-12">
-          <h1 className="text-3xl font-['La_Belle_Aurore']">
+        <div className="flex justify-between gap-8 mb-12 items-center">
+          <h1 className="text-3xl pt-4 font-['La_Belle_Aurore']">
             Where to visit next?
           </h1>
           <form onSubmit={handleSubmit}>

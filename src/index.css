@@ -17,7 +17,7 @@ code {
 @tailwind utilities;
 
 .btn {
-  @apply outline-none cursor-pointer py-1.5 px-4 transition-all duration-1000 h-9 text-base;
+  @apply outline-none cursor-pointer py-1.5 px-4 transition-all duration-1000 h-[38px] text-base;
 }
 
 .confirm-btn {
