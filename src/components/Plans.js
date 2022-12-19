@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Activity from "./Activity";
 
-const Plans = ({ plans }) => {
+const Plans = ({ plans, removeFromPlans }) => {
   const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
@@ -32,6 +32,7 @@ const Plans = ({ plans }) => {
                   key={index}
                   activity={activity}
                   plansActivity={true}
+                  removeFromPlans={removeFromPlans}
                 />
               );
             })}

@@ -38,6 +38,12 @@ function App() {
     setPlans([...plans, plan]);
   };
 
+  const removeFromPlans = (id) => {
+    const updatedPlans = plans.filter((plan) => plan.xid !== id);
+    console.log(id);
+    setPlans(updatedPlans);
+  };
+
   return (
     <main>
       <Routes>
@@ -55,7 +61,10 @@ function App() {
             />
           }
         />
-        <Route path="/plans" element={<Plans plans={plans} />} />
+        <Route
+          path="/plans"
+          element={<Plans plans={plans} removeFromPlans={removeFromPlans} />}
+        />
       </Routes>
     </main>
   );
