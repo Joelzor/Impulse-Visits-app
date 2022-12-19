@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Activities from "./components/Activities";
@@ -9,7 +9,7 @@ function App() {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
   const [plans, setPlans] = useState([]);
-  const initialRender = useRef(true);
+  // const initialRender = useRef(true);
 
   useEffect(() => {
     const options = {
@@ -28,16 +28,10 @@ function App() {
   const storePlans = () => {
     if (plans.length > 0) {
       localStorage.setItem("plans", JSON.stringify(plans));
-    } else {
-      return;
     }
   };
 
   useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-      return;
-    }
     storePlans();
   }, [plans]);
 
@@ -60,6 +54,10 @@ function App() {
   const removeFromPlans = (id) => {
     const updatedPlans = plans.filter((plan) => plan.xid !== id);
     setPlans(updatedPlans);
+
+    if (updatedPlans.length < 1) {
+      localStorage.setItem("plans", JSON.stringify([]));
+    }
   };
 
   return (
