@@ -6,6 +6,8 @@ const Activity = ({
   addToPlans,
   removeFromPlans,
   plansActivity = false,
+  setCurrentPlan,
+  currentPlan,
 }) => {
   const { kinds, name, xid } = activity;
   // Splitting string into an array then replacing underscores with space
@@ -14,9 +16,16 @@ const Activity = ({
     return tag.replaceAll("_", " ");
   });
 
+  const highlightPlan =
+    currentPlan && currentPlan.xid === activity.xid ? "bg-[#43c59e]" : null;
+
   return (
     <div className="flex justify-between">
-      <li className="mb-4 p-2 cursor-pointer rounded-lg hover:bg-[#b8b8b8] w-[415px]">
+      <li
+        className={`mb-4 p-2 cursor-pointer rounded-lg w-[415px] ${highlightPlan}
+          `}
+        onClick={() => setCurrentPlan(activity)}
+      >
         <div>
           <h3>{`${name.substring(0, 50)}...`}</h3>
           <p className="mt-2.5 italic">

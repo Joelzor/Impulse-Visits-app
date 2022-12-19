@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Activities from "./components/Activities";
@@ -26,7 +26,11 @@ function App() {
   }, []);
 
   const storePlans = () => {
-    localStorage.setItem("plans", JSON.stringify(plans));
+    if (plans.length > 0) {
+      localStorage.setItem("plans", JSON.stringify(plans));
+    } else {
+      return;
+    }
   };
 
   useEffect(() => {

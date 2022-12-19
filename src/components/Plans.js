@@ -5,6 +5,7 @@ import Activity from "./Activity";
 
 const Plans = ({ plans, setPlans, removeFromPlans }) => {
   const [query, setQuery] = useState("");
+  const [currentPlan, setCurrentPlan] = useState(null);
 
   const navigate = useNavigate();
 
@@ -49,10 +50,19 @@ const Plans = ({ plans, setPlans, removeFromPlans }) => {
                   activity={activity}
                   plansActivity={true}
                   removeFromPlans={removeFromPlans}
+                  currentPlan={currentPlan}
+                  setCurrentPlan={setCurrentPlan}
                 />
               );
             })}
         </ul>
+        <div>
+          <p>
+            {currentPlan
+              ? `${currentPlan.name}`
+              : "Select a plan to see more information"}
+          </p>
+        </div>
       </section>
     </section>
   );
