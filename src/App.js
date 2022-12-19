@@ -48,6 +48,8 @@ function App() {
   };
 
   const addToPlans = (plan) => {
+    const found = plans.find((existingPlan) => existingPlan.xid === plan.xid);
+    if (found) return;
     setPlans([...plans, plan]);
   };
 
