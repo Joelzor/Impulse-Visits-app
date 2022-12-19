@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import Activity from "./Activity";
 
 const Plans = ({ plans }) => {
   const [query, setQuery] = useState("");
@@ -22,7 +23,20 @@ const Plans = ({ plans }) => {
         handleSubmit={handleSubmit}
         title="Your plans"
       />
-      <section className="section-container"></section>
+      <section className="section-container">
+        <ul className="list-none m-0 p-0">
+          {plans &&
+            plans.map((activity, index) => {
+              return (
+                <Activity
+                  key={index}
+                  activity={activity}
+                  plansActivity={true}
+                />
+              );
+            })}
+        </ul>
+      </section>
     </section>
   );
 };
