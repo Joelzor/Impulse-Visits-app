@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Activities from "./components/Activities";
@@ -9,6 +9,7 @@ function App() {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
   const [plans, setPlans] = useState([]);
+  const initialRender = useRef(true);
 
   useEffect(() => {
     const options = {
@@ -23,6 +24,18 @@ function App() {
       options
     );
   }, []);
+
+  const storePlans = () => {
+    localStorage.setItem("plans", JSON.stringify(plans));
+  };
+
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+    storePlans();
+  }, [plans]);
 
   const successCallback = (position) => {
     const { latitude, longitude } = position.coords;
@@ -40,7 +53,6 @@ function App() {
 
   const removeFromPlans = (id) => {
     const updatedPlans = plans.filter((plan) => plan.xid !== id);
-    console.log(id);
     setPlans(updatedPlans);
   };
 
@@ -63,7 +75,13 @@ function App() {
         />
         <Route
           path="/plans"
-          element={<Plans plans={plans} removeFromPlans={removeFromPlans} />}
+          element={
+            <Plans
+              plans={plans}
+              setPlans={setPlans}
+              removeFromPlans={removeFromPlans}
+            />
+          }
         />
       </Routes>
     </main>
