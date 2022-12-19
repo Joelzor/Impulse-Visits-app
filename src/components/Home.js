@@ -28,6 +28,8 @@ const Home = ({ latitude, longitude }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!query) return;
+
     const params = new URLSearchParams({ query });
     navigate({ pathname: "/activities", search: params.toString() });
   };
