@@ -3,9 +3,14 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Activity from "./Activity";
 
-const Plans = ({ plans, setPlans, removeFromPlans }) => {
+const Plans = ({
+  plans,
+  setPlans,
+  removeFromPlans,
+  currentPlan,
+  setCurrentPlan,
+}) => {
   const [query, setQuery] = useState("");
-  const [currentPlan, setCurrentPlan] = useState(null);
 
   const navigate = useNavigate();
 
@@ -25,6 +30,8 @@ const Plans = ({ plans, setPlans, removeFromPlans }) => {
     const params = new URLSearchParams({ query });
     navigate({ pathname: "/activities", search: params.toString() });
   };
+
+  console.log(plans);
 
   return (
     <section className="w-[980px]">
@@ -57,11 +64,10 @@ const Plans = ({ plans, setPlans, removeFromPlans }) => {
             })}
         </ul>
         <div>
-          <p>
-            {currentPlan
-              ? `${currentPlan.name}`
-              : "Select a plan to see more information"}
-          </p>
+          {currentPlan && currentPlan.name}
+          {plans.length > 0 &&
+            !currentPlan &&
+            "Select a plan to see more information"}
         </div>
       </section>
     </section>

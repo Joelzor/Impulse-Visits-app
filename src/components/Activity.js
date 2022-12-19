@@ -31,7 +31,7 @@ const Activity = ({
           <p className="mt-2.5 italic">
             <span className="tag">{tagsFixed[0]}</span>{" "}
             <span className="tag">{tagsFixed[1]}</span>{" "}
-            {/* <span className="tag">{tagsFixed[2]}</span> */}
+            <span className="tag">{tagsFixed[2]}</span>
           </p>
         </div>
       </li>

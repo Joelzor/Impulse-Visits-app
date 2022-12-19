@@ -37,7 +37,7 @@ code {
 }
 
 .tag {
-  @apply rounded-2xl py-0.5 px-2 bg-[#aed9e0];
+  @apply rounded-2xl py-0.5 px-2 bg-[#aed9e0] text-sm;
 }
 
 .section-container {

@@ -9,7 +9,7 @@ function App() {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
   const [plans, setPlans] = useState([]);
-  // const initialRender = useRef(true);
+  const [currentPlan, setCurrentPlan] = useState(null);
 
   useEffect(() => {
     const options = {
@@ -56,6 +56,7 @@ function App() {
     setPlans(updatedPlans);
 
     if (updatedPlans.length < 1) {
+      setCurrentPlan(null);
       localStorage.setItem("plans", JSON.stringify([]));
     }
   };
@@ -84,6 +85,8 @@ function App() {
               plans={plans}
               setPlans={setPlans}
               removeFromPlans={removeFromPlans}
+              currentPlan={currentPlan}
+              setCurrentPlan={setCurrentPlan}
             />
           }
         />
