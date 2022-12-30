@@ -100,6 +100,9 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
           )}
         </section>
       </section>
+      <div className="overlay">
+        <div className="modal"></div>
+      </div>
     </>
   );
 };

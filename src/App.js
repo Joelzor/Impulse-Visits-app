@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Activities from "./components/Activities";
