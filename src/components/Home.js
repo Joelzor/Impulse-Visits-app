@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import "./Home.css";
 
 const apiKeyGeocode = process.env.REACT_APP_API_KEY_GEOCODE;
 
