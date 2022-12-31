@@ -1,15 +1,17 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Activities from "./components/Activities";
 import Plans from "./components/Plans";
+import Overlay from "./components/Overlay";
 
 function App() {
   const [userLatitude, setUserLatitude] = useState(null);
   const [userLongitude, setUserLongitude] = useState(null);
   const [plans, setPlans] = useState([]);
   const [currentPlan, setCurrentPlan] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const options = {
@@ -25,15 +27,15 @@ function App() {
     );
   }, []);
 
-  const storePlans = () => {
+  const storePlans = useCallback(() => {
     if (plans.length > 0) {
       localStorage.setItem("plans", JSON.stringify(plans));
     }
-  };
+  }, [plans]);
 
   useEffect(() => {
     storePlans();
-  }, [plans]);
+  }, [plans, storePlans]);
 
   const successCallback = (position) => {
     const { latitude, longitude } = position.coords;
@@ -45,10 +47,13 @@ function App() {
     console.log(error);
   };
 
-  const addToPlans = (plan) => {
+  const addToPlans = (plan, overlay, map) => {
     const found = plans.find((existingPlan) => existingPlan.xid === plan.xid);
     if (found) return;
     setPlans([...plans, plan]);
+    // overlay.current.classList.add("show-overlay");
+    // map.current.classList.add("disappear");
+    navigate({ pathname: "confirm" });
   };
 
   const removeFromPlans = (id) => {
@@ -90,6 +95,7 @@ function App() {
             />
           }
         />
+        <Route path="/confirm" element={<Overlay />} />
       </Routes>
     </main>
   );

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MapContainer, Marker, Popup } from "react-leaflet";
 import Activity from "./Activity";
@@ -15,6 +15,8 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
   const [activities, setActivities] = useState([]);
   const [cityCoords, setCityCoords] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const overlay = useRef(null);
+  const map = useRef(null);
 
   useEffect(() => {
     const query = searchParams.get("query");
@@ -88,19 +90,26 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
                     key={index}
                     activity={activity}
                     addToPlans={addToPlans}
+                    overlay={overlay}
+                    map={map}
                   />
                 );
               })}
           </ul>
 
           {cityCoords.length > 0 && (
-            <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
+            <MapContainer
+              center={cityCoords}
+              zoom={12}
+              scrollWheelZoom={false}
+              ref={map}
+            >
               <CityMap center={cityCoords} zoom={12} />
             </MapContainer>
           )}
         </section>
       </section>
-      <div className="overlay">
+      <div className="overlay" ref={overlay}>
         <div className="modal"></div>
       </div>
     </>

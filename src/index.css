@@ -55,3 +55,7 @@ code {
 .modal {
   @apply bg-white rounded w-[90vh] h-[30vh] max-w-screen-sm text-center grid place-items-center relative;
 }
+
+.disappear {
+  @apply hidden;
+}
