@@ -14,9 +14,7 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
   const [query, setQuery] = useState("");
   const [activities, setActivities] = useState([]);
   const [cityCoords, setCityCoords] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const overlay = useRef(null);
-  const map = useRef(null);
+  const searchParams = useSearchParams()[0];
 
   useEffect(() => {
     const query = searchParams.get("query");
@@ -90,28 +88,19 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
                     key={index}
                     activity={activity}
                     addToPlans={addToPlans}
-                    overlay={overlay}
-                    map={map}
+                    query={query}
                   />
                 );
               })}
           </ul>
 
           {cityCoords.length > 0 && (
-            <MapContainer
-              center={cityCoords}
-              zoom={12}
-              scrollWheelZoom={false}
-              ref={map}
-            >
+            <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
               <CityMap center={cityCoords} zoom={12} />
             </MapContainer>
           )}
         </section>
       </section>
-      <div className="overlay" ref={overlay}>
-        <div className="modal"></div>
-      </div>
     </>
   );
 };

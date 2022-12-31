@@ -1,10 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Overlay = () => {
+  const searchParams = useSearchParams()[0];
   const navigate = useNavigate();
 
   const backToActivities = () => {
-    navigate({ pathname: "/activities" });
+    const query = searchParams.get("query");
+    const params = new URLSearchParams({ query });
+    navigate({ pathname: "/activities", search: params.toString() });
   };
 
   const goToPlans = () => {

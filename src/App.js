@@ -47,13 +47,12 @@ function App() {
     console.log(error);
   };
 
-  const addToPlans = (plan, overlay, map) => {
+  const addToPlans = (plan, query) => {
     const found = plans.find((existingPlan) => existingPlan.xid === plan.xid);
     if (found) return;
     setPlans([...plans, plan]);
-    // overlay.current.classList.add("show-overlay");
-    // map.current.classList.add("disappear");
-    navigate({ pathname: "confirm" });
+    const params = new URLSearchParams({ query });
+    navigate({ pathname: "confirm", search: params.toString() });
   };
 
   const removeFromPlans = (id) => {

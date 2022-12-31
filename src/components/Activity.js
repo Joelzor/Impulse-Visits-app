@@ -8,8 +8,7 @@ const Activity = ({
   plansActivity = false,
   setCurrentPlan,
   currentPlan,
-  overlay,
-  map,
+  query,
 }) => {
   const { kinds, name, xid } = activity;
   // Splitting string into an array then replacing underscores with space
@@ -41,7 +40,7 @@ const Activity = ({
         <button
           className="self-center rounded-full hover:bg-[#92ddc7]"
           onClick={() => {
-            addToPlans(activity, overlay, map);
+            addToPlans(activity, query);
           }}
           title="Add to plans!"
         >
