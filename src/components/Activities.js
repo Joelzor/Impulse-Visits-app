@@ -67,6 +67,8 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!query) return;
+
     apiGet("geoname", "name=" + query.toLowerCase());
   };
 
