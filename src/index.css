@@ -45,17 +45,9 @@ code {
 }
 
 .overlay {
-  @apply fixed top-0 left-0 w-full h-full bg-[#000000] grid place-items-center transition-all opacity-50 invisible -z-10;
-}
-
-.show-overlay {
-  @apply visible z-10;
+  @apply fixed top-0 left-0 w-full h-full bg-[#000000] grid place-items-center transition-all opacity-70;
 }
 
 .modal {
   @apply bg-white rounded w-[90vh] h-[30vh] max-w-screen-sm text-center grid place-items-center relative;
-}
-
-.disappear {
-  @apply hidden;
 }

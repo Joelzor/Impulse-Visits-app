@@ -5,7 +5,7 @@ const PlanOverlay = ({ removeFromPlans }) => {
   const location = useLocation();
 
   return (
-    <div className="overlay show-overlay">
+    <div className="overlay">
       <div className="modal">
         <h3>Are you sure you want to delete this plan?</h3>
         <div className="flex gap-10">

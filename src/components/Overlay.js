@@ -12,7 +12,7 @@ const Overlay = () => {
   };
 
   return (
-    <div className="overlay show-overlay">
+    <div className="overlay">
       <div className="modal">
         <h3>Plan successfully added!</h3>
         <div className="flex gap-10">
