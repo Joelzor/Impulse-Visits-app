@@ -1,15 +1,16 @@
+import { useNavigate, Link } from "react-router-dom";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 
 const Activity = ({
   activity,
   addToPlans,
-  removeFromPlans,
   plansActivity = false,
   setCurrentPlan,
   currentPlan,
   query,
 }) => {
+  const navigate = useNavigate();
   const { kinds, name, xid } = activity;
   // Splitting string into an array then replacing underscores with space
   const tags = kinds.split(",");
@@ -48,15 +49,14 @@ const Activity = ({
         </button>
       )}
       {plansActivity && (
-        <button
-          className="self-center rounded-full hover:bg-[#FCB0B0]"
-          onClick={() => {
-            removeFromPlans(xid);
-          }}
-          title="Remove from plans!"
-        >
-          <AiOutlineMinusCircle className="h-6 w-auto text-[#F96262] hover:text-black" />
-        </button>
+        <Link to="/confirm-delete" state={xid}>
+          <button
+            className="self-center rounded-full hover:bg-[#FCB0B0]"
+            title="Remove from plans!"
+          >
+            <AiOutlineMinusCircle className="h-6 w-auto text-[#F96262] hover:text-black" />
+          </button>
+        </Link>
       )}
     </div>
   );

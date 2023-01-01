@@ -5,13 +5,10 @@ const Overlay = () => {
   const navigate = useNavigate();
 
   const backToActivities = () => {
+    // query being passed from addToPlans to Overlay component so we can navigate user back to the correct activities query page
     const query = searchParams.get("query");
     const params = new URLSearchParams({ query });
     navigate({ pathname: "/activities", search: params.toString() });
-  };
-
-  const goToPlans = () => {
-    navigate({ pathname: "/plans" });
   };
 
   return (
@@ -22,7 +19,7 @@ const Overlay = () => {
           <button className="btn confirm-btn" onClick={backToActivities}>
             Back to activities
           </button>
-          <button className="btn plans-btn" onClick={goToPlans}>
+          <button className="btn plans-btn" onClick={() => navigate("/plans")}>
             See my plans
           </button>
         </div>

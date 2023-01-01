@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Activities from "./components/Activities";
 import Plans from "./components/Plans";
 import Overlay from "./components/Overlay";
+import PlanOverlay from "./components/PlanOverlay";
 
 function App() {
   const [userLatitude, setUserLatitude] = useState(null);
@@ -63,6 +64,8 @@ function App() {
       setCurrentPlan(null);
       localStorage.setItem("plans", JSON.stringify([]));
     }
+
+    navigate("/plans");
   };
 
   return (
@@ -95,6 +98,10 @@ function App() {
           }
         />
         <Route path="/confirm" element={<Overlay />} />
+        <Route
+          path="/confirm-delete"
+          element={<PlanOverlay removeFromPlans={removeFromPlans} />}
+        />
       </Routes>
     </main>
   );

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MapContainer, Marker, Popup } from "react-leaflet";
 import Activity from "./Activity";
