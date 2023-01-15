@@ -6,6 +6,7 @@ import Activities from "./components/Activities";
 import Plans from "./components/Plans";
 import Overlay from "./components/Overlay";
 import PlanOverlay from "./components/PlanOverlay";
+import ActivityInfo from "./components/ActivityInfo";
 
 function App() {
   const [userLatitude, setUserLatitude] = useState(null);
@@ -85,6 +86,7 @@ function App() {
             />
           }
         />
+        <Route path="/activities/:id" element={<ActivityInfo />} />
         <Route
           path="/plans"
           element={

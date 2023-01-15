@@ -22,20 +22,22 @@ const Activity = ({
 
   return (
     <div className="flex justify-between">
-      <li
-        className={`mb-4 p-2 cursor-pointer rounded-lg w-[415px] hover:bg-[#e1e0e0] ${highlightPlan}
+      <Link to={`/activities/${xid}`}>
+        <li
+          className={`mb-4 p-2 cursor-pointer rounded-lg w-[415px] hover:bg-[#e1e0e0] ${highlightPlan}
           `}
-        onClick={() => setCurrentPlan(activity)}
-      >
-        <div>
-          <h3>{`${name.substring(0, 50)}...`}</h3>
-          <p className="mt-2.5 italic">
-            <span className="tag">{tagsFixed[0]}</span>{" "}
-            <span className="tag">{tagsFixed[1]}</span>{" "}
-            <span className="tag">{tagsFixed[2]}</span>
-          </p>
-        </div>
-      </li>
+          onClick={() => setCurrentPlan(activity)}
+        >
+          <div>
+            <h3>{`${name.substring(0, 50)}...`}</h3>
+            <p className="mt-2.5 italic">
+              <span className="tag">{tagsFixed[0]}</span>{" "}
+              <span className="tag">{tagsFixed[1]}</span>{" "}
+              <span className="tag">{tagsFixed[2]}</span>
+            </p>
+          </div>
+        </li>
+      </Link>
       {!plansActivity && (
         <button
           className="self-center rounded-full hover:bg-[#92ddc7]"
