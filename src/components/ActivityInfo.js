@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 function ActivityInfo() {
-  // What I need on this page...
-  // activity - could I just use params and make a new request?
-  // apiGetInfo - needed to make the request with the xid
   const [info, setInfo] = useState(null);
+  const [query, setQuery] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
   const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
 
   function apiGetInfo(method, query) {
@@ -33,7 +33,35 @@ function ActivityInfo() {
     apiGetInfo("xid/" + id);
   }, [id]);
 
-  return <div>{info}</div>;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!query) return;
+
+    const params = new URLSearchParams({ query });
+    navigate({ pathname: "/activities", search: params.toString() });
+  };
+
+  return (
+    <>
+      <section className="w-[980px]">
+        <Header
+          handleSubmit={handleSubmit}
+          query={query}
+          setQuery={setQuery}
+          title="Activity"
+        />
+        <section className="section-container">
+          <div>
+            {info === null &&
+              "We have no information about this location :( Please try another!"}
+            {info}
+          </div>
+          <div></div>
+        </section>
+      </section>
+    </>
+  );
 }
 
 export default ActivityInfo;
