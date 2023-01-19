@@ -4,6 +4,8 @@ import Header from "./Header";
 
 function ActivityInfo() {
   const [info, setInfo] = useState(null);
+  const [image, setImage] = useState(null);
+  const [name, setName] = useState(null);
   const [query, setQuery] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,6 +25,8 @@ function ActivityInfo() {
       .then((response) => response.json())
       .then((data) => {
         setInfo(data.wikipedia_extracts.text);
+        setImage(data.preview.source);
+        setName(data.name);
       })
       .catch(function (err) {
         console.log("Fetch Error :-S", err);
@@ -57,7 +61,10 @@ function ActivityInfo() {
               "We have no information about this location :( Please try another!"}
             {info}
           </div>
-          <div></div>
+          <div>
+            {image === null && "We have no image for this location"}
+            <img src={image} alt={name} />
+          </div>
         </section>
       </section>
     </>
