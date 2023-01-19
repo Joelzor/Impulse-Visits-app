@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header";
 
 function ActivityInfo() {
@@ -9,6 +9,8 @@ function ActivityInfo() {
   const [query, setQuery] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
 
   function apiGetInfo(method, query) {
@@ -46,6 +48,11 @@ function ActivityInfo() {
     navigate({ pathname: "/activities", search: params.toString() });
   };
 
+  const backToActivities = () => {
+    const params = new URLSearchParams({ query: location.state });
+    navigate({ pathname: "/activities", search: params.toString() });
+  };
+
   return (
     <>
       <section className="w-[980px]">
@@ -59,7 +66,11 @@ function ActivityInfo() {
           <div>
             {info === null &&
               "We have no information about this location :( Please try another!"}
-            {info}
+            <p>{info}</p>
+            <br />
+            <button className="btn confirm-btn" onClick={backToActivities}>
+              Back to activities
+            </button>
           </div>
           <div>
             {image === null && "We have no image for this location"}

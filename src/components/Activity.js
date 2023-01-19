@@ -22,7 +22,7 @@ const Activity = ({
 
   return (
     <div className="flex justify-between">
-      <Link to={`/activities/${xid}`}>
+      <Link to={`/activities/${xid}`} state={query}>
         <li
           className={`mb-4 p-2 cursor-pointer rounded-lg w-[415px] hover:bg-[#e1e0e0] ${highlightPlan}
           `}
