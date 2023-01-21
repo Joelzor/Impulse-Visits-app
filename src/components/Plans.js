@@ -20,7 +20,7 @@ const Plans = ({
       storedPlans = JSON.parse(localStorage.getItem("plans"));
       setPlans(storedPlans);
     }
-  }, []);
+  }, [setPlans]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,8 +30,6 @@ const Plans = ({
     const params = new URLSearchParams({ query });
     navigate({ pathname: "/activities", search: params.toString() });
   };
-
-  console.log(currentPlan);
 
   return (
     <section className="w-[980px]">

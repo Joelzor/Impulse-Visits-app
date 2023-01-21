@@ -27,7 +27,6 @@ const Activity = ({
           <li
             className={`mb-4 p-2 cursor-pointer rounded-lg w-[415px] hover:bg-[#e1e0e0] ${highlightPlan}
           `}
-            onClick={() => setCurrentPlan(activity)}
           >
             <div>
               <h3>{`${name.substring(0, 50)}...`}</h3>
