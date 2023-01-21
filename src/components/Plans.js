@@ -31,6 +31,8 @@ const Plans = ({
     navigate({ pathname: "/activities", search: params.toString() });
   };
 
+  console.log(currentPlan);
+
   return (
     <section className="w-[980px]">
       <Header

@@ -66,7 +66,7 @@ function ActivityInfo() {
           <div>
             {info === null &&
               "We have no information about this location :( Please try another!"}
-            <p>{info}</p>
+            <p className="text-justify">{info}</p>
             <br />
             <button className="btn confirm-btn" onClick={backToActivities}>
               Back to activities
