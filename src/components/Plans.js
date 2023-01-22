@@ -20,7 +20,7 @@ const Plans = ({
       storedPlans = JSON.parse(localStorage.getItem("plans"));
       setPlans(storedPlans);
     }
-  }, []);
+  }, [setPlans]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
