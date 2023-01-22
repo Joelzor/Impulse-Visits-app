@@ -4,6 +4,7 @@ import { MapContainer, Marker, Popup } from "react-leaflet";
 import Activity from "./Activity";
 import Header from "./Header";
 import CityMap from "./CityMap";
+import Loading from "./Loading";
 
 const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
 const pageLength = 5; // number of objects per page
@@ -14,6 +15,7 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
   const [query, setQuery] = useState("");
   const [activities, setActivities] = useState([]);
   const [cityCoords, setCityCoords] = useState([]);
+  const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams()[0];
 
   useEffect(() => {
@@ -53,6 +55,7 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
     fetch(otmAPI)
       .then((response) => response.json())
       .then((data) => {
+        setLoading(false);
         if (Array.isArray(data) === false) {
           setCityCoords([data.lat, data.lon]);
         } else {
@@ -60,6 +63,7 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
         }
       })
       .catch(function (err) {
+        setLoading(false);
         console.log("Fetch Error :-S", err);
       });
   }
@@ -71,6 +75,10 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
 
     apiGet("geoname", "name=" + query.toLowerCase());
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
