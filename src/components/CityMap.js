@@ -19,7 +19,7 @@ const CityMap = ({ center, zoom, activities }) => {
           point: { lon, lat },
         } = activity;
         return (
-          <>
+          <div key={xid}>
             <Marker position={[lat, lon]}>
               <Popup>
                 {name}
@@ -27,7 +27,7 @@ const CityMap = ({ center, zoom, activities }) => {
                 <Link to={`/activities/${xid}`}>To activity page</Link>
               </Popup>
             </Marker>
-          </>
+          </div>
         );
       })}
     </>

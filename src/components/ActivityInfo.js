@@ -63,6 +63,7 @@ function ActivityInfo() {
 
   const backToActivities = () => {
     const params = new URLSearchParams({ query: location.state });
+    console.log(params);
     navigate({ pathname: "/activities", search: params.toString() });
   };
 
