@@ -8,6 +8,7 @@ function ActivityInfo() {
   const [name, setName] = useState(null);
   const [url, setUrl] = useState(null);
   const [query, setQuery] = useState("");
+  const [city, setCity] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,6 +28,7 @@ function ActivityInfo() {
     fetch(otmAPI)
       .then((response) => response.json())
       .then((data) => {
+        setCity(data.address.city.toLowerCase());
         setInfo(data.wikipedia_extracts.text);
         setImage(data.preview.source);
         setName(data.name);
@@ -63,7 +65,11 @@ function ActivityInfo() {
 
   const backToActivities = () => {
     const params = new URLSearchParams({ query: location.state });
-    console.log(params);
+    const paramQuery = params.toString().replace("query=", "");
+    if (paramQuery === "null") {
+      return navigate({ pathname: "/activities", search: `query=${city}` });
+    }
+    console.log(params.toString());
     navigate({ pathname: "/activities", search: params.toString() });
   };
 
