@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import Activity from "./Activity";
 import Header from "./Header";
 import CityMap from "./CityMap";
@@ -107,7 +107,7 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
 
           {cityCoords.length > 0 && (
             <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
-              <CityMap center={cityCoords} zoom={12} />
+              <CityMap center={cityCoords} zoom={12} activities={activities} />
             </MapContainer>
           )}
         </section>
