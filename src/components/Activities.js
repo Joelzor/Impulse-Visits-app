@@ -30,7 +30,8 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
     if (latitude && longitude && !query) {
       setCityCoords([latitude, longitude]);
     }
-  }, [latitude, longitude, query]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [latitude, longitude]);
 
   useEffect(() => {
     if (cityCoords.length > 0) {
