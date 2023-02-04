@@ -1,4 +1,5 @@
 import { useMap, TileLayer, Marker, Popup } from "react-leaflet";
+import { Link } from "react-router-dom";
 
 const CityMap = ({ center, zoom, activities }) => {
   const map = useMap();
@@ -14,12 +15,17 @@ const CityMap = ({ center, zoom, activities }) => {
       {activities.map((activity) => {
         const {
           name,
+          xid,
           point: { lon, lat },
         } = activity;
         return (
           <>
             <Marker position={[lat, lon]}>
-              <Popup>{name}</Popup>
+              <Popup>
+                {name}
+                <br />
+                <Link to={`/activities/${xid}`}>To activity page</Link>
+              </Popup>
             </Marker>
           </>
         );
