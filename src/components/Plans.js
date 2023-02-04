@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Activity from "./Activity";
+import Loading from "./Loading";
 
 const Plans = ({
   plans,
@@ -11,11 +12,13 @@ const Plans = ({
   setCurrentPlan,
 }) => {
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     let storedPlans = localStorage.getItem("plans");
+    setLoading(false);
     if (storedPlans) {
       storedPlans = JSON.parse(localStorage.getItem("plans"));
       setPlans(storedPlans);
@@ -30,6 +33,10 @@ const Plans = ({
     const params = new URLSearchParams({ query });
     navigate({ pathname: "/activities", search: params.toString() });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <section className="w-[980px]">
