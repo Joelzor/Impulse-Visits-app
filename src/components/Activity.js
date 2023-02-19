@@ -58,7 +58,7 @@ const Activity = ({
 
       {!plansActivity && (
         <button
-          className="self-center rounded-full hover:bg-[#92ddc7]"
+          className="self-center rounded-full hover:bg-[#92ddc7] mr-4"
           onClick={() => {
             addToPlans(activity, query);
           }}
@@ -68,9 +68,9 @@ const Activity = ({
         </button>
       )}
       {plansActivity && (
-        <Link to="/confirm-delete" state={xid} className="self-center">
+        <Link to="/confirm-delete" state={xid} className="self-center mr-4">
           <button
-            className="rounded-full hover:bg-[#FCB0B0]"
+            className="rounded-full hover:bg-[#FCB0B0] "
             title="Remove from plans!"
           >
             <AiOutlineMinusCircle className="h-6 w-auto text-[#F96262] hover:text-black" />

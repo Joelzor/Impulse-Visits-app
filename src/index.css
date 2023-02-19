@@ -41,7 +41,7 @@ code {
 }
 
 .section-container {
-  @apply grid grid-cols-2 gap-20 h-[420px];
+  @apply grid grid-cols-2 gap-10 h-[420px];
 }
 
 .overlay {

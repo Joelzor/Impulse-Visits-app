@@ -7,7 +7,7 @@ import CityMap from "./CityMap";
 import Loading from "./Loading";
 
 const apiKey = process.env.REACT_APP_API_KEY_OPEN_TRIP_MAP;
-const pageLength = 5; // number of objects per page
+const pageLength = 25; // number of objects per page
 let offset = 0; // offset from first object in the list
 let count; // total objects count
 
@@ -90,8 +90,8 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
           setQuery={setQuery}
           title="Where to visit next?"
         />
-        <section className="section-container">
-          <ul className="list-none m-0 p-0">
+        <section className="section-container ">
+          <ul className="list-none m-0 p-0 overflow-y-scroll">
             {activities &&
               activities.map((activity, index) => {
                 return (
@@ -106,8 +106,8 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
           </ul>
 
           {cityCoords.length > 0 && (
-            <MapContainer center={cityCoords} zoom={12} scrollWheelZoom={false}>
-              <CityMap center={cityCoords} zoom={12} activities={activities} />
+            <MapContainer center={cityCoords} zoom={14} scrollWheelZoom={false}>
+              <CityMap center={cityCoords} zoom={14} activities={activities} />
             </MapContainer>
           )}
         </section>
