@@ -67,6 +67,7 @@ function ActivityInfo() {
     const params = new URLSearchParams({ query: location.state });
     const paramQuery = params.toString().replace("query=", "");
     if (paramQuery === "null") {
+      // city can sometimes be undefined for some locations, must sort out :/
       return navigate({ pathname: "/activities", search: `query=${city}` });
     }
     console.log(params.toString());
