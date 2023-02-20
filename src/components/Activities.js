@@ -106,7 +106,7 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
           </ul>
 
           {cityCoords.length > 0 && (
-            <MapContainer center={cityCoords} zoom={14} scrollWheelZoom={false}>
+            <MapContainer center={cityCoords} zoom={14} scrollWheelZoom={true}>
               <CityMap center={cityCoords} zoom={14} activities={activities} />
             </MapContainer>
           )}

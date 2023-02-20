@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Activity from "./Activity";
 import Loading from "./Loading";
+import CityMap from "./CityMap";
+import { MapContainer } from "react-leaflet";
 
 const Plans = ({
   plans,
@@ -13,6 +15,7 @@ const Plans = ({
 }) => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [planCoords, setplanCoords] = useState(null);
 
   const navigate = useNavigate();
 
@@ -24,6 +27,13 @@ const Plans = ({
       setPlans(storedPlans);
     }
   }, [setPlans]);
+
+  useEffect(() => {
+    if (currentPlan) {
+      const { lat, lon } = currentPlan.point;
+      setplanCoords([lat, lon]);
+    }
+  }, [currentPlan]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,8 +78,12 @@ const Plans = ({
               );
             })}
         </ul>
+        {currentPlan && planCoords && (
+          <MapContainer center={planCoords} zoom={14} scrollWheelZoom={true}>
+            <CityMap center={planCoords} zoom={14} plan={currentPlan} />
+          </MapContainer>
+        )}
         <div>
-          {currentPlan && currentPlan.name}
           {plans.length > 0 &&
             !currentPlan &&
             "Select a plan to see more information"}

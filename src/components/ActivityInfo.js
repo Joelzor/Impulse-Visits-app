@@ -70,7 +70,6 @@ function ActivityInfo() {
       // city can sometimes be undefined for some locations, must sort out :/
       return navigate({ pathname: "/activities", search: `query=${city}` });
     }
-    console.log(params.toString());
     navigate({ pathname: "/activities", search: params.toString() });
   };
 
