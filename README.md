@@ -4,7 +4,7 @@ Impulse Visits is my personal project for the end of the Boolean frontend module
 
 Stack: React, Tailwind CSS
 
-### MVP 
+### MVP
 
 The user can see their location on the screen- if incorrect, they can search for a city; they will then get a list of activities near their location; the user can filter this list by activity type; they will also see a map of the city
 
@@ -16,10 +16,16 @@ A ‘plan to do’ page will alllow the user to add an activity to a list where 
 
 The user will be able to click on an activity which will redirect them to a separate activity page with further information
 
-### V4 
+### V4
 
 The map is populated by pins showing where each activity is
 
 ### V5
 
 The user will be able to post reviews of activities/ places they’ve been to
+
+## Future updates
+
+- Responsive design
+- Bug fixes
+- In terms of the code itself, I probably won't refactor much- this was my first ever front-end project (outside of tutorials) so I want to keep the code as is for legacy purposes :D

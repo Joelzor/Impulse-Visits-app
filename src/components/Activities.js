@@ -83,7 +83,7 @@ const Activities = ({ latitude, longitude, addToPlans }) => {
 
   return (
     <>
-      <section className="w-[980px]">
+      <section className="sm:w-[600px] lg:w-[980px]">
         <Header
           handleSubmit={handleSubmit}
           query={query}
