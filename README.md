@@ -18,6 +18,8 @@ The user will be able to click on an activity which will redirect them to a sepa
 
 The map is populated by pins showing where each activity is
 
+Live project - https://impulse-visits-app.vercel.app/
+
 ## Stack
 
 - React
