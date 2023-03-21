@@ -1,5 +1,7 @@
 ## Impulse Visits
 
+Live project - https://impulse-visits-app.vercel.app/
+
 Impulse Visits is my personal project for the end of the Boolean frontend module. It is essentially a smaller Tripadvisor application, allowing users to search for a location and recieve information about places they can visit within a certain distance. See the below for which features will be added down the line!
 
 ### MVP
@@ -17,8 +19,6 @@ The user will be able to click on an activity which will redirect them to a sepa
 ### V4
 
 The map is populated by pins showing where each activity is
-
-Live project - https://impulse-visits-app.vercel.app/
 
 ## Stack
 
